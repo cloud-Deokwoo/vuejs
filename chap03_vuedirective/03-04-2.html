@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>03-04. 자바스크립트의 이벤트와 값의 전달</title>
+  </head>
+  <body>
+    <h1>자바스크립트의 이벤트와 값의 전달</h1>  
+    <hr>
+    <div id="app">
+      <input id="a" type="text"/>
+      <input id="validButton" type="button" value="입력확인">
+      <br />
+      입력하신 이름 : <span>{{name}}</span>
+    </div>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+    <script type="text/javascript">
+      var vm = Vue.createApp({
+        name: "App",
+        data() {
+          return { name: "" };
+        },
+      }).mount("#app");
+
+      //2. 화살표 함수를 활용하여 이벤트와 값의 전달
+
+      validButton.addEventListener("click", e => {
+        const a = document.querySelector("#a");
+        vm.name = a.value;
+      });
+    </script>
+  </body>
+</html>

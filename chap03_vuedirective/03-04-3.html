@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>03-04. 자바스크립트의 이벤트와 값의 전달</title>
+  </head>
+  <body>
+    <h1>자바스크립트의 이벤트와 값의 전달</h1>  
+    <hr>
+    <div id="app">
+      <input id="a" type="text"/>
+      <input id="validButton" type="button" value="입력확인">
+      <br />
+      입력하신 이름 : <span>{{name}}</span>
+    </div>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+    <script type="text/javascript">
+      var vm = Vue.createApp({
+        name: "App",
+        data() {
+          return { name: "" };
+        },
+      }).mount("#app");
+
+      //3. input 이벤트 핸들러를 활용한 이벤트와 값의 전달
+      //화살표 함수와 입력 값이 바뀌면, 자동으로 View Model을 활용하여 View의 값을 변경
+
+      a.addEventListener("input", e => {
+        //model의 name 값을 변경한다
+        vm.name = a.value;
+      });
+    </script>
+
+  </body>
+</html>

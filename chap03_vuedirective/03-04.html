@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>03-04. 자바스크립트의 이벤트와 값의 전달</title>
+  </head>
+  <body>
+    <h1>자바스크립트의 이벤트와 값의 전달</h1>  
+    <hr>
+    <div id="app">
+      <input id="a" type="text"/>
+      <input id="validButton" type="button" value="입력확인">
+      <br />
+      입력하신 이름 : <span>{{name}}</span>
+    </div>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+    <script type="text/javascript">
+      var vm = Vue.createApp({
+        name: "App",
+        data() {
+          return { name: "" };
+        },
+      }).mount("#app");
+      //1. 순수 자바스크립트를 사용하여 [입력확인] 버튼 클릭시 입력한 값을 읽어 화면에 출력하게 구현함 
+      //id가 validButton인 객체를 자바스크립트에서 사용할 수 있는 객체로 얻는다 
+      const validButton = document.querySelector("#validButton");
+      //validButton인 객체를 자바스크립트에 click이벤트가 발생하여 onValidButton()에서 처리 할 수 있게 설정한다
+      validButton.addEventListener("click", onValidButton);
+
+      function onValidButton(e) {
+        //id a인 객체를 자바스크립트에서 사용할 수 있는 객체로 얻는다 
+        const a = document.querySelector("#a");
+        //model의 name 값을 변경한다
+        vm.name = a.value;
+      }
+
+      //2. 화살표 함수를 활용하여 이벤트와 값의 전달
+      /*
+      validButton.addEventListener("click", e => {
+        const a = document.querySelector("#a");
+        vm.name = a.value;
+      });
+      */
+
+      //3. input 이벤트 핸들러를 활용한 이벤트와 값의 전달
+      //화살표 함수와 입력 값이 바뀌면, 자동으로 View Model을 활용하여 View의 값을 변경
+      /*
+      a.addEventListener("input", e => {
+        //model의 name 값을 변경한다
+        vm.name = a.value;
+      });
+      */
+    </script>
+
+    <!-- 4. @input를 이용한 이벤트와 값의 전달 -->
+    <!--
+    <div id="app">
+      <input id="a" type="text" @input="onChangeName"/>
+      <br />
+      입력하신 이름 : <span>{{name}}</span>
+    </div>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+    <script type="text/javascript">
+        var vm = Vue.createApp({
+        name: "App",
+        data() {
+            return { name: "" };
+        },
+        methods: {
+            onChangeName : e => {
+            const a = document.querySelector("#a");
+            //model의 name 값을 변경한다
+            vm.name = a.value;
+            }
+        }
+        }).mount("#app");
+    </script>    
+    -->
+
+    <!-- 5. @input 과 이벤트 타겟을 활용한 이벤트와 값의 전달 -->
+    <!-- 
+    <div id="app">
+
+      <input id="a" type="text" @input="onChangeName"/>
+      <br />
+      입력하신 이름 : <span>{{name}}</span>
+    </div>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+    <script type="text/javascript">
+      var vm = Vue.createApp({
+        name: "App",
+        data() {
+          return { name: "" };
+        },
+        methods: {
+          changeName : e => {
+            vm.name = e.target.value;
+          }
+        }
+      }).mount("#app");
+    </script>
+    -->
+
+    <!-- 6. v-model 을 활용한 이벤트와 값의 전달 -->
+    <!--  
+    <div id="app">
+      <input id="a" type="text" v-model="name" />
+      <br />
+      입력하신 이름 : <span>{{name}}</span>
+    </div>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+    <script type="text/javascript">
+      var vm = Vue.createApp({
+        name: "App",
+        data() {
+          return { name: "" };
+        },
+      }).mount("#app");
+    </script>
+    -->
+
+    <!-- 7. :value 와 @input 을 활용한 이벤트와 값의 전달 -->
+    <!-- 
+    <div id="app">
+      <input id="a" type="text" :value="name" @input="changeName" />
+      <br />
+      입력하신 이름 : <span>{{name}}</span>
+    </div>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+    <script type="text/javascript">
+      var vm = Vue.createApp({
+        name: "App",
+        data() {
+          return { name: "" };
+        },
+        methods: {
+          changeName(e) {
+            this.name = e.target.value;
+          },
+        },
+      }).mount("#app");
+    </script>
+    -->
+  </body>
+</html>

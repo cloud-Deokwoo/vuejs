@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 3 v-if Example</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="currentState = 'A'">State A</button>
+        <button @click="currentState = 'B'">State B</button>
+        <button @click="currentState = 'C'">State C</button>
+
+        <p v-if="currentState === 'A'">State A is active</p>
+        <p v-else-if="currentState === 'B'">State B is active</p>
+        <p v-else-if="currentState === 'C'">State C is active</p>
+        <p v-else>No state is active</p>
+    </div>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    currentState: ''
+                };
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+</html>

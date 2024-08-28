@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 3 v-bind Example</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <img v-bind:src="imageSrc" alt="Vue Logo" />
+        <p v-bind:style="{ color: textColor }">Styled text</p>
+    </div>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    imageSrc: 'https://vuejs.org/images/logo.png',
+                    textColor: 'blue'
+                };
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+</html>

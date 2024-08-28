@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 3 v-for Example (Shortened)</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <!-- v-for 디렉티브를 사용하여 배열 항목을 반복합니다. -->
+            <li v-for="item in items" :key="item.id">{{ item.name }}</li>
+        </ul>
+    </div>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    items: [
+                        { id: 1, name: 'Item 1' },
+                        { id: 2, name: 'Item 2' },
+                        { id: 3, name: 'Item 3' }
+                    ]
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

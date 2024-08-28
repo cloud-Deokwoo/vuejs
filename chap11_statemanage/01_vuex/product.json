@@ -1,0 +1,5 @@
+[
+  { "pno": 1, "pname": "Product 1", "pcon": "Description of Product 1", "price": 100 },
+  { "pno": 2, "pname": "Product 2", "pcon": "Description of Product 2", "price": 200 },
+  { "pno": 3, "pname": "Product 3", "pcon": "Description of Product 3", "price": 300 }
+]
